@@ -1,42 +1,36 @@
-#nome processo
 name: CI - Lint / Tests / Deploy
 
-#indica quando será executado o processo, no caso em todo push
 on: [push]
 
 jobs:
-  #job executado pra verificar se arquivo está escrito da maneira correta
+
   lint:
-    #indica a plataforma onde será executado
     runs-on: ubuntu-20.04
-    #indica os passos do job
+
     steps:
-      #passo para chamar o action no github
       - uses: actions/checkout@v2
-      #configura a versão do python
+
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      #instala as dependências
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install flake8
-      #executar o lint desse arquivo
+
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-  #etapa de teste
+
   tests:
-    #indica que é obrigatório que o passo de lint seja concluído para seguir com passo de tests
     needs: lint
     runs-on: ubuntu-20.04
-    #indica que a etapa será verificada usando todas essas versões do python para verificar a compatibilidade
-    strategy:      
+    strategy:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
 
@@ -55,13 +49,11 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Integrations Test
-        #arquivo responsavel pelos testes
         run: | 
           python test.py
 
 
   deploy:
-    #indica que passo de tests deve ser concluído e consequentemente o passo de lint
     needs: tests
     runs-on: ubuntu-20.04
 

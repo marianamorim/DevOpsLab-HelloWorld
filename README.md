@@ -8,4 +8,4 @@ Para maiores informações acesse o [Site da 4Linux](https://www.4linux.com.br/c
 
 ## APP hospedado no Heroku
 
-Site de acesso para o APP hospedado o Heroku - [PaaS](https://devops-marianaamorim.herokuapp.com)
+Site de acesso para o APP hospedado no Heroku - [PaaS](https://devops-marianaamorim.herokuapp.com)

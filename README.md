@@ -6,6 +6,6 @@
 
 Para maiores informações acesse o [Site da 4Linux](https://www.4linux.com.br/cursos/devops)
 
-## Status do Deploy
+## APP hospedado no Heroku
 
-[Site do Deploy](https://devops-marianaamorim.herokuapp.com)
+Site de acesso para o APP hospedador no Heroku - [PaaS](https://devops-marianaamorim.herokuapp.com)
